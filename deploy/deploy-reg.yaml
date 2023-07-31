@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reg-deployment
+  labels:
+    app: reg-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reg-pod
+  template:
+    metadata:
+      labels:
+        app: reg-pod
+    spec:
+      containers:
+        - name: registry
+          image: registry:latest
+          ports:
+            - containerPort: 80
+              name: registry-port
